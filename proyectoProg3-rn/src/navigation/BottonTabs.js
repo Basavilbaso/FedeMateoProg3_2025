@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 import Home from '../screens/Home';
 import Profile from '../screens/Profile';
-import NewPost from '../screens/NewPost';
+import NewPost from '../screens/NuevoPost';
 
 const Tab= createBottomTabNavigator();
 

@@ -32,6 +32,13 @@ class Login extends Component {
       }
     }
   }
+  componentDidMount(){
+    auth.onAuthStateChanged(user =>{
+      if(user && !(this.props.route.params?.register)){
+        this.props.navigation.navigate("Home")
+      }
+    })
+  }
 
   render() {
     return (

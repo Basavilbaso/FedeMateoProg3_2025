@@ -41,18 +41,14 @@ export default Home;
 
 const styles = StyleSheet.create({
     container:{
-        margin: 20
+        flex: 1,                       
+        justifyContent: 'center',     
+        paddingHorizontal: 10,
     },
-    heading:{
+    heading: {
         fontSize: 30,
-        fontWeight: 700,
-        marginBottom: 10
-    },
-    h1: {
         fontWeight: "bold",
-        fontSize: 40,
-        fontSize: 28,
-        marginBottom: 30,
-        marginRight: 50
-    }
+        marginBottom: 10,
+        textAlign: "center",              
+    },  
 })

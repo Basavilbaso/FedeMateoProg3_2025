@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import firebase from "firebase";
 import { auth, db } from "../firebase/config";
+import { FontAwesome } from '@expo/vector-icons'
 
 class PostCard extends Component {
     constructor(props) {
@@ -63,6 +64,7 @@ class PostCard extends Component {
             }))
     }
 
+    
     render() {
 
         return (
@@ -73,17 +75,24 @@ class PostCard extends Component {
                 {!this.props.likeButton && (
                     this.state.likeado ? (
                         <TouchableOpacity style={styles.unlikeButton} onPress={() => this.unlike()}>
-                            <Text style={styles.unlikeText}>Unlike</Text>
+                            <View style={styles.buttonContent}>
+                                <FontAwesome name="thumbs-down" size={18} color="white" />
+                                <Text style={styles.unlikeText}>Unlike</Text>
+                            </View>
                         </TouchableOpacity>
                     ) : (
                         <TouchableOpacity style={styles.likeButton} onPress={() => this.like()}>
-                            <Text style={styles.likeText}>Like</Text>
+                            <View style={styles.buttonContent}>
+                                <FontAwesome name="thumbs-up" size={18} color="white" />
+                                <Text style={styles.likeText}>Like</Text>
+                            </View>
                         </TouchableOpacity>
                     )
                 )}
                 {this.props.onDelete && (
                     <TouchableOpacity style={styles.delete} onPress={() => this.props.onDelete(this.props.id)}>
-                        <Text style={styles.deleteText}>Borrar Post</Text>
+                        <FontAwesome name="trash" size={16} color="#fff" />
+                        <Text style={styles.deleteText}> Borrar Post</Text>
                     </TouchableOpacity>
                 )}
             </View>
@@ -91,16 +100,17 @@ class PostCard extends Component {
     }
 
 }
-export default PostCard;
+
+
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: "#f2f2f2",
+        backgroundColor: "grey",
         borderRadius: 8,
         padding: 12,
         marginBottom: 10,
         marginHorizontal: 16,
-    },
+    },    
     user: {
         fontWeight: "600",
         fontSize: 15,
@@ -136,14 +146,19 @@ const styles = StyleSheet.create({
     },
     delete: {
         backgroundColor: "#e74c3c",
-        paddingVertical: 6,
-        paddingHorizontal: 12,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center', 
+        paddingVertical: 8,
         borderRadius: 5,
         marginTop: 6,
     },
+    
     deleteText: {
         color: "#fff",
         fontSize: 14,
         fontWeight: "600",
     },
 });
+
+export default PostCard;

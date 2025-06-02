@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native"
 import { TextInput } from "react-native";
 import { auth, db } from "../firebase/config";
+import { FontAwesome } from '@expo/vector-icons'
 
 class Register extends Component {
     constructor(props) {
@@ -57,6 +58,7 @@ class Register extends Component {
                 <TextInput style={styles.field} keyboardType="default" secureTextEntry={true} placeholder="password" onChangeText={text => this.setState({password: text})} value={this.state.password} />
                 {this.state.error !== "" && (<Text style={styles.error}>{this.state.error}</Text>)}
                 <TouchableOpacity style={styles.button} onPress={() => this.registrarUsuario(this.state.email, this.state.username, this.state.password)}>
+                    <FontAwesome name="user-plus" size={15} color="#fff" />
                     <Text style={styles.text}>Registrarse</Text>
                 </TouchableOpacity>
             </View>
@@ -67,32 +69,33 @@ export default Register;
  
 const styles = StyleSheet.create({
     registrar: {
+        flex: 1,                       
+        justifyContent: 'center',     
         paddingHorizontal: 10,
-        marginTop: 20,
     },
     h1: {
+        fontSize: 30,
         fontWeight: "bold",
-        fontSize: 40,
-        fontSize: 28,
-        marginBottom: 30,
-        marginRight: 50
+        marginBottom: 10,
+        textAlign: "center",
     },
     button: {
         backgroundColor: "#28a745",
         paddingHorizontal: 10,
-        paddingVertical: 6,
-        textAlign: "center",
+        paddingVertical: 8,
         borderRadius: 4,
         borderWidth: 1,
-        borderStyle: "solid",
         borderColor: "#28a745",
-        marginVertical: 10
+        marginVertical: 10,
+        flexDirection: "row",        
+        justifyContent: "center",    
+        alignItems: "center",        
     },
     text: {
         color: "#fff",
         fontSize: 15,
-        textAlign: "center",
-    },
+        marginLeft: 8                
+    },    
     field: {
         height: 20,
         paddingVertical: 15,
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         marginVertical: 10
     },
-    error:{
+    error: {
         color: "red",
         marginVertical: 10
     }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet} from "react-native";
 import { TextInput } from "react-native";
 import { auth, db } from "../firebase/config";
+import { FontAwesome } from '@expo/vector-icons'
 
 class NuevoPost extends Component {
     constructor(props){
@@ -31,7 +32,8 @@ class NuevoPost extends Component {
                 <Text style={styles.h1}>Subir posteo</Text>
                 <TextInput style={styles.field} keyboardType="default" placeholder="Crear posteo" onChangeText={text => this.setState({post: text})} value={this.state.post}/>
                 <TouchableOpacity style={styles.button} onPress={() => this.onSubmit()}>
-                    <Text style={styles.text}>Subir posteo</Text>
+                    <FontAwesome name="send" size={18} color="#fff" />
+                    <Text style={styles.text}> Subir posteo</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -39,29 +41,32 @@ class NuevoPost extends Component {
 }
 export default NuevoPost;
 
+
 const styles = StyleSheet.create({
     posteo: {
+        flex: 1,                       
+        justifyContent: 'center',     
         paddingHorizontal: 10,
-        marginTop: 20,
     },
-    h1: {
+    h1:{
+        fontSize: 30,
         fontWeight: "bold",
-        fontSize: 40,
-        fontSize: 28,
-        marginBottom: 30,
-        marginRight: 50
+        marginBottom: 10,
+        textAlign: "center",
     },
     button: {
         backgroundColor: "#28a745",
         paddingHorizontal: 10,
         paddingVertical: 6,
-        textAlign: "center",
         borderRadius: 4,
         borderWidth: 1,
-        borderStyle: "solid",
         borderColor: "#28a745",
-        marginVertical: 10
+        marginVertical: 10,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
     },
+
     text: {
         color: "#fff",
         fontSize: 15,

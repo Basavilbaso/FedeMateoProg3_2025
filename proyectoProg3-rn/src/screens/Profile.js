@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from "react-native"
 import { auth, db } from "../firebase/config";
 import PostCard from "../components/PostCard";
+import { FontAwesome } from '@expo/vector-icons'
 
 class Profile extends Component {
     constructor(props) {
@@ -72,7 +73,8 @@ class Profile extends Component {
                         <PostCard id={item.id} info={item} likeButton={true} onDelete={(id) => this.borrarPost(id)} />
                     )}/>
                 <TouchableOpacity style={styles.button} onPress={() => this.logout()}>
-                    <Text style={styles.logout}>Logout</Text>
+                    <FontAwesome name="sign-out" size={18} color="#fff" />
+                    <Text style={styles.logout}> Logout</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -83,7 +85,6 @@ export default Profile;
 const styles = StyleSheet.create({
     container: {
         padding: 16,
-        backgroundColor: "grey",
         flex: 1,
     },
     h1: {
@@ -99,7 +100,9 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         alignItems: "center",
         marginTop: 20,
-        marginBottom: 30,
+        marginBottom: 30,                      
+        justifyContent: 'center',     
+        paddingHorizontal: 10,
     },
     logout: {
         color: "white",

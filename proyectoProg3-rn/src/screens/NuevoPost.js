@@ -20,12 +20,15 @@ class NuevoPost extends Component {
             createdAt: Date.now(),
             likes: []
         })
-        .then(() => this.props.navigation.navigate("Home"))
-        .catch(error => {
-            this.setState({error: "Fallo en el posteo"})
+        .then(() => {
+            this.setState({ post: "", error: "" }); 
+            this.props.navigation.navigate("Home");
         })
+        .catch(error => {
+            this.setState({ error: "Fallo en el posteo" });
+        });
     }
-
+    
     render() {
         return (
             <View style={styles.posteo}>

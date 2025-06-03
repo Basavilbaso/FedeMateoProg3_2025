@@ -14,6 +14,11 @@ class NuevoPost extends Component {
     }
 
     onSubmit(){
+        if(this.state.post === ""){
+            this.setState({error: "No puede mandar un posteo vacio"});
+        } else if( this.state.post.length < 3){
+            this.setState({error: "El posteo debe contener a partir de 3 letras"});
+        } else {
         db.collection("posts").add({
             owner: auth.currentUser.email,
             post: this.state.post,
@@ -27,6 +32,7 @@ class NuevoPost extends Component {
         .catch(error => {
             this.setState({ error: "Fallo en el posteo" });
         });
+        }
     }
     
     render() {
@@ -34,6 +40,7 @@ class NuevoPost extends Component {
             <View style={styles.posteo}>
                 <Text style={styles.h1}>Subir posteo</Text>
                 <TextInput style={styles.field} keyboardType="default" placeholder="Crear posteo" onChangeText={text => this.setState({post: text})} value={this.state.post}/>
+                {this.state.error !== "" && (<Text style={styles.error}>{this.state.error}</Text>)}
                 <TouchableOpacity style={styles.button} onPress={() => this.onSubmit()}>
                     <FontAwesome name="send" size={18} color="#fff" />
                     <Text style={styles.text}> Subir posteo</Text>
@@ -85,5 +92,8 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         marginVertical: 10
     },
-
+    error: {
+        color: "red",
+        marginVertical: 10
+      }
 })
